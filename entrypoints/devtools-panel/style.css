@@ -185,9 +185,6 @@ header {
 #count {
   color: var(--muted);
   font-size: 11px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
 }
 
 /* ---- Boutons ---- */

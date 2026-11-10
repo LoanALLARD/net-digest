@@ -445,6 +445,7 @@ function render() {
   const ovCount = new Set(
     exported.filter((e) => e.type !== 'marker').map(overrideKeyOf).filter((k) => overrides[k]),
   ).size;
+  const selectedMs = sel.reduce((sum, e) => sum + e.time, 0);
 
   countEl.textContent = bridge
     ? `${visible.length} shown / ${all.length} captured` +
@@ -452,7 +453,8 @@ function render() {
       (tokens ? ` • ≈ ${fmtTokens(tokens)} tokens` : '') +
       (ovCount ? ` • ${ovCount} endpoint override${ovCount > 1 ? 's' : ''}` : '') +
       (bridge.dropped ? ` (${bridge.dropped} oldest purged)` : '') +
-      (bridge.recording ? ' · ● REC' : ' · listening ✓')
+      (bridge.recording ? ' · ● REC' : ' · listening ✓') +
+      (selectedMs ? ` · total ${selectedMs} ms` : '')
     : 'connecting to capture…';
 
   syncOverrideBar(sel);
